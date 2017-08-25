@@ -1,0 +1,11 @@
+debug: true
+
+dbs.default: game
+dbs.options:
+    game:
+        driver: pdo_pgsql
+        user: cogcrate
+        password: cogcrate
+        dbname: cogcrate
+        host: postgres
+        port: 5432

@@ -1,0 +1,25 @@
+{
+    "require": {
+        "silex/silex": "~2.0",
+        "doctrine/orm": "^2.5",
+        "symfony/console": "^3.3",
+        "symfony/browser-kit": "^3.3",
+        "symfony/doctrine-bridge": "^3.3",
+        "saxulum/config-service-provider": "^2.0",
+        "symfony/yaml": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "CogCrate\\": "class/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+           "CogCrate\\Test\\": "test/lib/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.3",
+        "symfony/stopwatch": "^3.3"
+    }
+}
