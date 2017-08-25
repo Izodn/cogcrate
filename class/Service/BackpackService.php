@@ -45,7 +45,7 @@ SQL;
 		return $newBackpack;
 	}
 
-	public function addItemToBackpack(int $itemId, int $backpackId) : bool
+	public function addItem(int $itemId, int $backpackId) : bool
 	{
 		$item = $this->itemService->getItem($itemId);
 		$backpack = $this->getBackpack($backpackId);
@@ -68,6 +68,31 @@ SQL;
 		$query = $this->db->prepare($sql);
 		$query->bindValue(1, $itemId, \PDO::PARAM_INT);
 		$query->bindValue(2, $backpackId, \PDO::PARAM_INT);
+		$query->execute();
+
+		return true;
+	}
+
+	public function removeItem(int $itemId, int $backpackId) : bool
+	{
+		$item = $this->itemService->getItem($itemId);
+		$backpack = $this->getBackpack($backpackId);
+		if (empty($item) || empty($backpack)) {
+			return false;
+		}
+
+		$linkedContents = $this->db->fetchAll(
+			"SELECT id FROM backpackitemlink WHERE item = ? AND backpack = ?",
+			[$itemId, $backpackId]
+		);
+
+		if (empty($linkedContents)) {
+			return false;
+		}
+
+		$sql = "DELETE FROM backpackitemlink WHERE id = ?";
+		$query = $this->db->prepare($sql);
+		$query->bindValue(1, $linkedContents[0]["id"], \PDO::PARAM_INT);
 		$query->execute();
 
 		return true;

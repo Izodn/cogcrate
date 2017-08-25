@@ -1,5 +1,5 @@
 <?php
-namespace CogCrate\Test\Integration;
+namespace CogCrate\Test\Unit\Controller;
 
 use CogCrate\Test\DatabaseTestCase;
 

@@ -1,5 +1,5 @@
 <?php
-namespace CogCrate\Test\Integration;
+namespace CogCrate\Test\Unit\Controller;
 
 use CogCrate\Test\DatabaseTestCase;
 
@@ -46,6 +46,21 @@ class BackpackControllerTest extends DatabaseTestCase
 		)["id"];
 		$client = $this->createClient();
 		$client->request("PUT", "/backpack/$itemId/$backpackId");
+		$response = $client->getResponse();
+		$jsonStr = $response->getContent();
+		$jsonArr = json_decode($jsonStr, true);
+		$this->assertTrue($jsonArr["success"]);
+	}
+
+	public function testRemoveItem() : void
+	{
+		$backpackId = $this->app["service.backpack"]->createBackpack()["id"];
+		$itemId = $this->app["db"]->fetchAssoc(
+			"SELECT id FROM backpackitem LIMIT 1"
+		)["id"];
+		$this->app["service.backpack"]->addItem($itemId, $backpackId);
+		$client = $this->createClient();
+		$client->request("DELETE", "/backpack/$itemId/$backpackId");
 		$response = $client->getResponse();
 		$jsonStr = $response->getContent();
 		$jsonArr = json_decode($jsonStr, true);

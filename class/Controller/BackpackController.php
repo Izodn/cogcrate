@@ -35,13 +35,25 @@ class BackpackController
 
 	public function addItem(int $itemId, int $backpackId) : JsonResponse
 	{
-		$itemAdded = $this->backpackService->addItemToBackpack(
+		$itemAdded = $this->backpackService->addItem(
 			$itemId,
 			$backpackId
 		);
 
 		return new JsonResponse([
 			"success" => $itemAdded
+		]);
+	}
+
+	public function removeItem(int $itemId, int $backpackId) : JsonResponse
+	{
+		$itemRemoved = $this->backpackService->removeItem(
+			$itemId,
+			$backpackId
+		);
+
+		return new JsonResponse([
+			"success" => $itemRemoved
 		]);
 	}
 }

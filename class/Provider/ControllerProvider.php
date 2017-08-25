@@ -53,6 +53,10 @@ class ControllerProvider implements
 			"/backpack/{itemId}/{backpackId}",
 			"controller.backpack:addItem"
 		);
+		$controllers->delete(
+			"/backpack/{itemId}/{backpackId}",
+			"controller.backpack:removeItem"
+		);
 
 		return $controllers;
 	}

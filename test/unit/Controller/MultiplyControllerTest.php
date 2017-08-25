@@ -1,5 +1,5 @@
 <?php
-namespace CogCrate\Test\Unit;
+namespace CogCrate\Test\Unit\Controller;
 
 use CogCrate\Test\ApplicationTestCase;
 use CogCrate\Controller\MultiplyController;
