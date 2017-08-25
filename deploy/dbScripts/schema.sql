@@ -39,6 +39,6 @@ VALUES
 
 CREATE TABLE game.backpackitemlink (
 	id SERIAL PRIMARY KEY,
-	backpack BIGINT NOT NULL REFERENCES playerbackpack(id),
-	item BIGINT NOT NULL REFERENCES backpackitem(id)
+	backpack BIGINT NOT NULL REFERENCES game.playerbackpack(id),
+	item BIGINT NOT NULL REFERENCES game.backpackitem(id)
 );

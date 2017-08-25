@@ -5,7 +5,6 @@ RUN apt-get update \
 	&& apt-get -y --no-install-recommends install \
 		php7.1-pgsql \
 		php7.1-mbstring \
-		php-redis \
 		php-yaml \
 		php-xdebug \
 	&& apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
